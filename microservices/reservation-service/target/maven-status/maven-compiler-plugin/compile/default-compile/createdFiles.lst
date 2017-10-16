@@ -1,0 +1,4 @@
+com/example/reservationservice/Reservation.class
+com/example/reservationservice/ReservationRestConntroller.class
+com/example/reservationservice/ReservationRepository.class
+com/example/reservationservice/ReservationServiceApplication.class
