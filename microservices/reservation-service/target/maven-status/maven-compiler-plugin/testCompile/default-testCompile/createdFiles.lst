@@ -1,5 +1,0 @@
-com/example/reservationservice/BaseClass.class
-com/example/reservationservice/ReservationRepositoryTest.class
-com/example/reservationservice/ReservationRestControllerTest.class
-com/example/reservationservice/ReservationTest.class
-org/springframework/cloud/contract/verifier/tests/ContractVerifierTest.class

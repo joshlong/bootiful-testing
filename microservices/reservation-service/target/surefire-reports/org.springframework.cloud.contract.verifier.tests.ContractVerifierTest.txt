@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: org.springframework.cloud.contract.verifier.tests.ContractVerifierTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.719 sec - in org.springframework.cloud.contract.verifier.tests.ContractVerifierTest
