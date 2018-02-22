@@ -1,6 +1,6 @@
 package com.example.reservationservice;
 
-import com.jayway.restassured.module.mockmvc.RestAssuredMockMvc;
+import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -10,30 +10,24 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * @author <a href="mailto:josh@joshlong.com">Josh Long</a>
  */
-@SpringBootTest(classes = ReservationServiceApplication.class)
+@SpringBootTest
 @RunWith(SpringRunner.class)
 public class BaseClass {
 
-    @MockBean
-    private ReservationRepository reservationRepository;
+	@MockBean
+	private ReservationRepository reservationRepository;
 
-    @Autowired
-    private ReservationRestController reservationRestController;
+	@Autowired
+	private ReservationRestController controller;
 
-    @Before
-    public void before() throws Exception {
-
-        List<Reservation> reservations = Arrays.asList(new Reservation(1L, "Jane"),
-                new Reservation(2L, "Bob"));
-
-        // turn the mock into a stub w/ Mockito
-        Mockito.when(this.reservationRepository.findAll()).thenReturn(reservations);
-
-        RestAssuredMockMvc.standaloneSetup(this.reservationRestController);
-    }
+	@Before
+	public void before() throws Exception {
+		Mockito.when(this.reservationRepository.findAll())
+				.thenReturn(Arrays.asList(new Reservation(1L, "Jane"), new Reservation(2L, "Josh")));
+		RestAssuredMockMvc.standaloneSetup(this.controller);
+	}
 }

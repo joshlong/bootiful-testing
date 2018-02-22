@@ -10,11 +10,12 @@ import org.junit.Test;
  */
 public class ReservationTest {
 
-    @Test
-    public void testPersistence() throws Exception {
-        Reservation reservation = new Reservation(null, "Jane");
-        Assert.assertEquals(reservation.getReservationName(), "Jane");// junit
-        Assert.assertThat(reservation.getReservationName(), Matchers.is("Jane")); // hamcrest
-        Assertions.assertThat(reservation.getReservationName()).isEqualTo("Jane"); // assertj
-    }
+	@Test
+	public void create() throws Exception {
+
+		Reservation reservation = new Reservation(1L, "Josh");
+		Assert.assertEquals("Josh", reservation.getReservationName());
+		Assert.assertThat(1L, Matchers.is(reservation.getId()));
+		Assertions.assertThat(reservation.getReservationName()).isNotBlank();
+	}
 }
