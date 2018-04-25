@@ -8,12 +8,12 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 public class ReservationClientApplication {
 
-	@Bean
-	RestTemplate restTemplate() {
-		return new RestTemplate();
-	}
+		@Bean
+		RestTemplate restTemplate() {
+				return new RestTemplate();
+		}
 
-	public static void main(String[] args) {
-		SpringApplication.run(ReservationClientApplication.class, args);
-	}
+		public static void main(String[] args) {
+				SpringApplication.run(ReservationClientApplication.class, args);
+		}
 }

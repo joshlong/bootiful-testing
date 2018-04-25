@@ -10,24 +10,29 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 /**
- * @author <a href="mailto:josh@joshlong.com">Josh Long</a>
- */
+	* @author <a href="mailto:josh@joshlong.com">Josh Long</a>
+	*/
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class BaseClass {
 
-	@MockBean
-	private ReservationRepository reservationRepository;
+		@Autowired
+		private ReservationRestController reservationRestController;
 
-	@Autowired
-	private ReservationRestController controller;
+		@MockBean
+		private ReservationRepository reservationRepository;
 
-	@Before
-	public void before() throws Exception {
-		Mockito.when(this.reservationRepository.findAll())
-				.thenReturn(Arrays.asList(new Reservation(1L, "Jane"), new Reservation(2L, "Josh")));
-		RestAssuredMockMvc.standaloneSetup(this.controller);
-	}
+		@Before
+		public void before() {
+
+				Mockito
+					.when(this.reservationRepository.findAll())
+					.thenReturn(Arrays.asList(new Reservation(1L, "Jane"), new Reservation(2L, "Josh")));
+
+				RestAssuredMockMvc.standaloneSetup(this.reservationRestController);
+
+		}
 }

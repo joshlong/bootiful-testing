@@ -6,19 +6,19 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Collection;
 
 /**
- * @author <a href="mailto:josh@joshlong.com">Josh Long</a>
- */
+	* @author <a href="mailto:josh@joshlong.com">Josh Long</a>
+	*/
 @RestController
 public class ReservationRestController {
 
-	private final ReservationRepository reservationRepository;
+		private final ReservationRepository reservationRepository;
 
-	public ReservationRestController(ReservationRepository reservationRepository) {
-		this.reservationRepository = reservationRepository;
-	}
+		public ReservationRestController(ReservationRepository reservationRepository) {
+				this.reservationRepository = reservationRepository;
+		}
 
-	@GetMapping("/reservations")
-	Collection<Reservation> reservations() {
-		return this.reservationRepository.findAll();
-	}
+		@GetMapping("/reservations")
+		Collection<Reservation> reservations() {
+				return reservationRepository.findAll();
+		}
 }

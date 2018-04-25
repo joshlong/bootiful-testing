@@ -6,16 +6,15 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * @author <a href="mailto:josh@joshlong.com">Josh Long</a>
- */
+	* @author <a href="mailto:josh@joshlong.com">Josh Long</a>
+	*/
 public class ReservationTest {
 
-	@Test
-	public void create() throws Exception {
-
-		Reservation reservation = new Reservation(1L, "Josh");
-		Assert.assertEquals("Josh", reservation.getReservationName());
-		Assert.assertThat(1L, Matchers.is(reservation.getId()));
-		Assertions.assertThat(reservation.getReservationName()).isNotBlank();
-	}
+		@Test
+		public void create() {
+				Reservation r = new Reservation(1L, "Jane");
+				Assert.assertEquals(r.getReservationName(), "Jane");
+				Assert.assertThat(r.getReservationName(), Matchers.equalToIgnoringCase("Jane"));
+				Assertions.assertThat(r.getReservationName()).isEqualToIgnoringCase("Jane");
+		}
 }
