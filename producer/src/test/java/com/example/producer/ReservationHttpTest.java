@@ -12,33 +12,29 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Flux;
 
-@RunWith(SpringRunner.class)
 @WebFluxTest
-@Import(ReservationHttpConfig.class)
+@Import(ReservationHttpConfiguration.class)
+@RunWith(SpringRunner.class)
 public class ReservationHttpTest {
 
 	@Autowired
-	private WebTestClient webTestClient;
+	private WebTestClient client;
 
 	@MockBean
 	private ReservationRepository reservationRepository;
 
 	@Test
-	public void getAllReservations() {
+	public void get() {
 
-		Mockito
-			.when(this.reservationRepository.findAll())
+		Mockito.when(this.reservationRepository.findAll())
 			.thenReturn(Flux.just(new Reservation("1", "Jane")));
 
-		this.webTestClient
+		this.client
 			.get()
 			.uri("http://localhost:8080/reservations")
 			.exchange()
 			.expectStatus().isOk()
 			.expectHeader().contentType(MediaType.APPLICATION_JSON)
-			.expectBody()
-			.jsonPath("@.[0].name", "Jane");
-
-
+			.expectBody().jsonPath("@.[0].name", "Jane").exists();
 	}
 }

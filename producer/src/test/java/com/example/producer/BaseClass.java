@@ -4,6 +4,7 @@ import io.restassured.RestAssured;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.web.server.LocalServerPort;
@@ -16,7 +17,7 @@ import reactor.core.publisher.Flux;
 	webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
 	properties = "server.port=0"
 )
-@Import(ReservationHttpConfig.class)
+@Import(ReservationHttpConfiguration.class)
 public class BaseClass {
 
 	@LocalServerPort

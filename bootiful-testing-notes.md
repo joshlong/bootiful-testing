@@ -1,0 +1,3 @@
+- <testMode>EXPLICIT</testMode>
+- 
+- use Hoxtonn.M2 for the consumer 

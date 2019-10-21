@@ -9,9 +9,10 @@ import org.springframework.web.reactive.function.client.WebClient;
 public class ConsumerApplication {
 
 	@Bean
-	WebClient client  (WebClient.Builder builder){
+	WebClient webClient(WebClient.Builder builder) {
 		return builder.build();
 	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(ConsumerApplication.class, args);
 	}

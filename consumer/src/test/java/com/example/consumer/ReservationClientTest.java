@@ -1,27 +1,22 @@
 package com.example.consumer;
 
-import com.github.tomakehurst.wiremock.client.WireMock;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
 import org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties;
-import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
+import org.springframework.test.context.junit4.SpringRunner;
 import reactor.test.StepVerifier;
-
-import java.util.function.Predicate;
 
 @AutoConfigureStubRunner(
 	ids = "com.example:producer:+:8080",
 	stubsMode = StubRunnerProperties.StubsMode.LOCAL
 )
 //@AutoConfigureWireMock(port = 8080)
+@RunWith(SpringRunner.class)
 @SpringBootTest
-public class ConsumerApplicationTests {
+public class ReservationClientTest {
 
 	@Autowired
 	private ReservationClient client;

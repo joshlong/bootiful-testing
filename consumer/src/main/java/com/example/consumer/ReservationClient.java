@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 
-@Component
 @RequiredArgsConstructor
+@Component
 public class ReservationClient {
 
 	private final WebClient client;
@@ -27,5 +27,5 @@ public class ReservationClient {
 @AllArgsConstructor
 @NoArgsConstructor
 class Reservation {
-	private String id, name;
+	private String /*reservationName*/ name , id;
 }
