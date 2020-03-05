@@ -15,7 +15,7 @@ import reactor.core.publisher.Flux;
 @WebFluxTest
 @Import(ReservationHttpConfiguration.class)
 @RunWith(SpringRunner.class)
-public class ReservationHttpTest {
+public class ResevationHttpTest {
 
 	@Autowired
 	private WebTestClient client;
@@ -26,15 +26,18 @@ public class ReservationHttpTest {
 	@Test
 	public void get() {
 
-		Mockito.when(this.reservationRepository.findAll())
-			.thenReturn(Flux.just(new Reservation("1", "Jane")));
+		Mockito
+			.when(this.reservationRepository.findAll())
+			.thenReturn(Flux.just(new Reservation("1", "Jame"), new Reservation("2", "Joe")));
 
 		this.client
 			.get()
 			.uri("http://localhost:8080/reservations")
 			.exchange()
-			.expectStatus().isOk()
-			.expectHeader().contentType(MediaType.APPLICATION_JSON)
-			.expectBody().jsonPath("@.[0].name", "Jane").exists();
+			.expectStatus().is2xxSuccessful()
+			.expectHeader().contentType(MediaType.APPLICATION_JSON_VALUE)
+			.expectBody().jsonPath("@.[0].name").exists();
+
+
 	}
 }

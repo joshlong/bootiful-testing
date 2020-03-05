@@ -1,30 +1,32 @@
 package com.example.producer;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
-
 
 @DataMongoTest
 @RunWith(SpringRunner.class)
-public class ReservationEntityTest {
+public class ReservationDocumentTest {
 
 	@Autowired
 	private ReservationRepository reservationRepository;
 
 	@Test
 	public void persist() {
-		Reservation r = new Reservation(null, "Jane");
-		Mono<Reservation> save = this.reservationRepository.save(r);
+
+		Flux<Reservation> reservationFlux = this.reservationRepository
+			.deleteAll()
+			.thenMany(Flux.just("A", "B", "B", "C").flatMap(x -> this.reservationRepository.save(new Reservation(null, x))))
+			.thenMany(this.reservationRepository.findAll());
+
 		StepVerifier
-			.create(save)
-			.expectNextMatches(re -> re.getId() != null && re.getName().equalsIgnoreCase("Jane"))
+			.create(reservationFlux)
+			.expectNextCount(4)
 			.verifyComplete();
 	}
+
 }

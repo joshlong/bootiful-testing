@@ -3,10 +3,14 @@ package com.example.producer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Reservation {
-	private String id, name;
+
+	@Id
+	private String id;
+	private String name;
 }

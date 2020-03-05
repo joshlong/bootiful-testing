@@ -7,9 +7,10 @@ import org.junit.Test;
 public class ReservationPojoTest {
 
 	@Test
-	public void create() throws Exception {
-		Reservation re = new Reservation("1", "Jane");
-		Assert.assertNotNull(re.getName());
-		Assert.assertThat(re.getId(), Matchers.equalToIgnoringCase("1"));
+	public void persist() {
+		Reservation reservation = new Reservation("1", "Josh");
+		Assert.assertEquals(reservation.getId(), "1");
+		Assert.assertEquals(reservation.getName(), "Josh");
+		Assert.assertThat(reservation.getId(), Matchers.notNullValue());
 	}
 }

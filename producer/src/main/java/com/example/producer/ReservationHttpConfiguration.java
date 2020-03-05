@@ -9,12 +9,12 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 import static org.springframework.web.reactive.function.server.ServerResponse.ok;
 
 @Configuration
-class ReservationHttpConfiguration {
+public class ReservationHttpConfiguration {
 
 	@Bean
 	RouterFunction<ServerResponse> routes(ReservationRepository rr) {
 		return route()
-			.GET("/reservations", request -> ok().body(rr.findAll(), Reservation.class))
+			.GET("/reservations", r -> ok().body(rr.findAll(), Reservation.class))
 			.build();
 	}
 }
