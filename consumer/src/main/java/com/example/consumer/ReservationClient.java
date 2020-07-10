@@ -11,7 +11,7 @@ public class ReservationClient {
 
     private final WebClient webClient;
 
-    Flux<Reservation> getAllReservations() {
+    public Flux<Reservation> getAllReservations() {
         return this.webClient
                 .get()
                 .uri("http://localhost:8080/reservations")

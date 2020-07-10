@@ -9,7 +9,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 public class ConsumerApplication {
 
 	@Bean
-	WebClient webClient (WebClient.Builder builder) {
+	WebClient webClient (WebClient.Builder builder ){
 		return builder.build();
 	}
 

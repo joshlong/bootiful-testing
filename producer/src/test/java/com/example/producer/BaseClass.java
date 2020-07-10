@@ -1,7 +1,5 @@
 package com.example.producer;
 
-
-
 import io.restassured.RestAssured;
 import org.junit.Before;
 import org.junit.runner.RunWith;
@@ -15,10 +13,7 @@ import reactor.core.publisher.Flux;
 
 @RunWith(SpringRunner.class)
 @Import(ReservationHttpConfiguration.class)
-@SpringBootTest(
-        properties = "server.port=0",
-        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
-)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class BaseClass {
 
     @LocalServerPort
@@ -28,8 +23,8 @@ public class BaseClass {
     private ReservationRepository reservationRepository;
 
     @Before
-    public void before() {
+    public void setUp() {
         RestAssured.baseURI = "http://localhost:" + this.port;
-        Mockito.when(this.reservationRepository.findAll()).thenReturn(Flux.just(new Reservation("1", "Jane"), new Reservation("2", "Joe")));
+        Mockito.when(this.reservationRepository.findAll()).thenReturn(Flux.just(new Reservation("1", "Jane")));
     }
 }
