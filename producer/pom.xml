@@ -47,10 +47,21 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>io.projectreactor</groupId>
 			<artifactId>reactor-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>spring-web-test-client</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -80,7 +91,8 @@
 				<version>2.2.3.RELEASE</version>
 				<extensions>true</extensions>
 				<configuration>
-					<testMode>EXPLICIT</testMode>
+					<testFramework>JUNIT5</testFramework>
+					<testMode>WEBTESTCLIENT</testMode>
 					<baseClassForTests>
 						com.example.producer.BaseClass
 					</baseClassForTests>
